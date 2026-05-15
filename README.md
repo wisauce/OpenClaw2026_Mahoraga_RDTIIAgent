@@ -30,6 +30,54 @@ Given a policy document, URL, or country name, the agent autonomously:
 6. Suggests AI scores while keeping them separate from human reviewer confirmation.
 7. Writes a reviewer-ready audit report with evidence table, missing-evidence checklist, and source-query log.
 
+## How the program flow works
+
+The RDTII Framework Agent follows a structured loop that combines autonomous AI processing with human reviewer oversight. Here is the high-level flow:
+
+```mermaid
+flowchart TB
+    User(["Policy Reviewer"]) -->|"submits country name\nor policy document"| Agent
+
+    subgraph Agent["RDTII FRAMEWORK AGENT"]
+        direction TB
+        A[Load RDTII 2.1\nMethodology & 12 Pillars]
+        B[Discover Sources:\nlaws, regulations,\ntrade databases]
+        C[Extract Regulatory\nMeasures with\nExact Citations]
+        D[Map Measures to\nRDTII Pillars &\nIndicators]
+        E[Score Each Indicator\n0 (low) → 1 (high)]
+        F[Produce Audit Report\nwith Evidence Trail]
+        A --> B --> C --> D --> E --> F
+    end
+
+    subgraph Review["HUMAN REVIEW"]
+        G{Reviewer Gates\nEach Mapping & Score}
+        G -->|Accept| H[Finalize Score]
+        G -->|Adjust| I[Set Corrected Score]
+        G -->|Reject| J[Flag Missing\nEvidence]
+        H --> K[Calculate Weighted\nPillar Scores]
+        I --> K
+        J --> B
+    end
+
+    F -.-> G
+    K --> L[("Final RDTII Score\n0.0 – 1.0")]
+```
+
+The flow works in three stages:
+
+**1. Input** — A policy reviewer submits a country name, a policy document, or a URL to the agent.
+
+**2. Autonomous Agent Pipeline** — The agent loads the RDTII 2.1 methodology (12 pillars, indicator weights, scoring rules) and runs through five steps autonomously:
+   - **Source discovery** — fetches primary legal sources (laws, regulations, official gazettes) and queries required secondary databases (WTO I-TIP, Global Trade Alert, TAPED, V-Dem, WIPO Lex, WITS). Blocked databases are documented rather than silently skipped.
+   - **Measure extraction** — identifies discrete regulatory provisions with exact quotes, article numbers, and citations. Handles multilingual sources with original-script preservation and translation review.
+   - **Mapping** — connects each measure to the relevant RDTII pillar(s) and indicator(s). One measure may map to multiple indicators.
+   - **Scoring** — suggests an AI score (0 = low compliance cost, 1 = high compliance cost) per indicator with rationale and evidence citations.
+   - **Report production** — writes a structured audit report to `outputs/rdtii-review-report.md` with an evidence table, source-query log, and missing-evidence checklist.
+
+**3. Human Review Gate** — The agent never finalizes scores. A human reviewer accepts, adjusts, or rejects each AI-suggested mapping and score. Rejected items loop back for better evidence. Confirmed scores are used to calculate weighted pillar scores and the final overall RDTII score (simple average of 12 pillars). All three score states — `ai_suggested_score`, `reviewer_score`, and `final_score` — are preserved separately for full audit traceability.
+
+For full-pillar agentic parallel research, see `outputs/rdtii-parallel-research.mermaid`. For the detailed 8-phase technical pipeline, see `outputs/rdtii-agent-workflow.mermaid`.
+
 ## OpenClaw Agenthon alignment
 
 See `references/agenthon-compliance-checklist.md` for the full competition checklist.
@@ -109,6 +157,13 @@ Or use the prepared demo prompt in `examples/rdtii-demo-prompt.md`.
 │   └── openclaw-agenthon-guidelines.md    # Competition rules
 ├── examples/
 │   └── rdtii-demo-prompt.md              # Ready-to-use demo prompt
+├── outputs/
+│   ├── rdtii-overview-flow.mermaid       # High-level flow diagram
+│   ├── rdtii-autonomous-loop.mermaid     # Agent loop + reviewer gate
+│   ├── rdtii-parallel-research.mermaid   # Multi-agent parallel research
+│   ├── rdtii-agent-workflow.mermaid      # Full 8-phase pipeline
+│   ├── australia-rdtii-evidence-report.md # Sample evidence report
+│   └── demo-singapore-rdtii-pipeline.md  # Demo pipeline output
 └── bin/
     └── tirith                             # Safety policy enforcement
 ```
