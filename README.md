@@ -1,43 +1,65 @@
-# OpenClaw-Agenthon_Mahoraga
+# Mahoraga — RDTII Hermes Agent Profile
 
-**Mahoraga** is a domain-specific Hermes Agent for **RDTII** — the Regional Digital Trade Integration Index.
+**Mahoraga** is a domain-specific Hermes Agent profile for **RDTII** — the Regional Digital Trade Integration Index — packaged for **RISTEK x Build Club OpenClaw Agenthon 2026**.
 
-This repository is a sanitized Hermes profile export from `~/.hermes/profiles/lomba`, configured for RDTII-oriented law, policy, and compliance review workflows.
+This profile is designed to show Hermes Agent as more than a chatbot: it uses Hermes profiles, persona files, skills, memory, tool calls, file operations, web extraction, code execution, and autonomous task loops to complete RDTII policy-review workflows end to end.
 
-## Purpose
+## What makes this an agent
 
-Mahoraga assists policy reviewers and builders working with RDTII systems by helping to:
+Mahoraga is built on Hermes Agent, which provides:
 
-- Map digital trade laws, regulations, policy measures, and evidence to RDTII pillars and indicators
-- Support RDTII 2.1 scoring, reviewer assessment, and audit-trail workflows
-- Design schemas, APIs, prompts, and datasets for RDTII review products
-- Produce structured, evidence-oriented policy research outputs for human expert review
+- **Tool calls**: file read/write/search, terminal, Python/code execution, web extraction/search, browser automation, vision, messaging, todo tracking, and scheduled/background jobs.
+- **Autonomous loop**: Hermes can continue reasoning, call tools, inspect outputs, revise actions, and verify results until a task is complete.
+- **Skills**: reusable domain procedures. Mahoraga's unique skill is `skills/RDTIIAnalyzer/rdtii-policy-review/SKILL.md`.
+- **Profile state**: persona (`SOUL.md`), config (`config.yaml`), memory, and skills are packaged as a reusable Hermes profile.
+- **Multi-agent capability**: Hermes can delegate subtasks to isolated subagents for parallel research, review, or validation.
 
-RDTII outputs should be treated as policy research assistance, not legal advice.
+## Domain task Mahoraga completes
 
-## OpenClaw Agenthon context
+Given a policy document or URL, Mahoraga can autonomously:
 
-Mahoraga is packaged for **RISTEK x Build Club OpenClaw Agenthon 2026**. The profile understands the official technical guidelines from `http://ristek.link/Technical-Guidelines` and keeps them in mind for packaging, documentation, demo, and submission work.
+1. Extract or fetch the policy text.
+2. Identify discrete regulatory measures.
+3. Map each measure to likely RDTII pillars and indicators.
+4. Produce evidence-backed rationales with citations/quotes.
+5. Suggest scores while keeping AI suggestions separate from human reviewer confirmation.
+6. Generate a review-ready audit report and missing-evidence checklist.
 
-Key guideline implications:
+This directly satisfies the Agenthon requirement for a system with reasoning, decision-making, tool usage, workflow execution, and at least one autonomous end-to-end task.
 
-- This must be an AI Agent or Multi-Agent System, not a basic chatbot wrapper.
-- The system should demonstrate reasoning, decision-making, tool usage, workflow execution, and an autonomous loop.
-- At least one task should be completed end-to-end without manual human intervention.
-- The README should stay reproducible for judges.
-- The demo should clearly show product workflow and agent behavior within 2 minutes.
-- The pitch deck should cover problem, solution, agent workflow/architecture, key features/tech stack, and future development/impact.
+## OpenClaw Agenthon alignment
 
-A concise guideline summary is stored in `references/openclaw-agenthon-technical-guidelines.md`.
+See `references/agenthon-compliance-checklist.md` for the competition-oriented checklist.
 
-## Skills
+Key compliance points:
 
-The skill unique to this agent lives under `skills/RDTIIAnalyzer/`, especially `skills/RDTIIAnalyzer/rdtii-policy-review/SKILL.md`.
+- Not a basic chatbot wrapper: the profile includes domain skill logic, structured workflow, evidence extraction, scoring rules, and tool-backed verification.
+- Autonomous behavior: the agent is instructed to keep working through the workflow until it produces verified reviewer artifacts.
+- Technical execution: the profile uses Hermes Agent's built-in tool system, skills, memory, profile configuration, and optional multi-agent delegation.
+- Real-world deployability: outputs are designed for policy reviewers and include citations, confidence, uncertainty, and human-review gates.
 
-All other skills in this repository are bundled Hermes skills included with the exported profile for general agent capability and should not be treated as Mahoraga-specific domain logic.
+## Unique vs bundled skills
 
-## Safety and secrets
+- **Unique Mahoraga skill**: `skills/RDTIIAnalyzer/rdtii-policy-review/SKILL.md`
+- **Bundled Hermes skills**: all other `skills/` directories are general Hermes skills included with the exported profile for broad agent capability.
 
-Sensitive/runtime files are intentionally excluded. Use `config.example.yaml` as a redacted reference and create your local `config.yaml` / `.env` outside version control.
+## Reproducing locally
 
-The `.gitignore` excludes profile secrets, credentials, local runtime state, databases, logs, sessions, caches, lock files, PID files, and live config.
+1. Install Hermes Agent: https://hermes-agent.nousresearch.com/docs
+2. Import or place this profile under `~/.hermes/profiles/lomba`.
+3. Add secrets/API keys to `.env` locally. Do **not** commit `.env`.
+4. Start Hermes with the profile:
+
+```bash
+hermes --profile lomba
+```
+
+5. For an RDTII demo, ask:
+
+```text
+Use the RDTII policy review workflow on this policy text/URL. Extract measures, map them to RDTII pillars and indicators, suggest reviewer scores, and write an audit report.
+```
+
+## Safety
+
+Mahoraga provides policy research assistance, not legal advice. Human reviewers should confirm mappings, citations, and final scores before publication or operational use.

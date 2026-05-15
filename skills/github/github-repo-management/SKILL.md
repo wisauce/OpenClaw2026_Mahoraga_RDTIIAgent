@@ -56,7 +56,7 @@ REPO=$(echo "$OWNER_REPO" | cut -d/ -f2)
 
 ## Special case: reinitializing a repo from a Hermes profile
 
-When a user asks to reinitialize or export a Hermes profile directory such as `~/.hermes/profiles/<name>` into a GitHub repo, treat the profile as sensitive runtime state. Do **not** commit real `.env`, `auth.json`, `state.db*`, logs, sessions, cache files, lock/pid files, or the live `config.yaml`. Commit a strong `.gitignore` first, copy with explicit exclusions, create a redacted `config.example.yaml`, run a staged-file secret scan, and verify sensitive paths are untracked before pushing. See `references/hermes-profile-export.md` for the checklist, `.gitignore`, rsync exclusions, redaction snippet, secret scan, and verification commands.
+When a user asks to reinitialize or export a Hermes profile directory such as `~/.hermes/profiles/<name>` into a GitHub repo, treat the profile as sensitive runtime state. Do **not** commit real `.env`, `auth.json`, `state.db*`, logs, sessions, cache files, lock/pid files, or the live `config.yaml`. Commit a strong `.gitignore` first, copy with explicit exclusions, create a redacted `config.example.yaml`, run a staged-file secret scan, and verify sensitive paths are untracked before pushing. If the repo represents a named/domain-specific agent, update `SOUL.md` and `README.md`, and document which skill directory is unique to the agent versus bundled Hermes skills. See `references/hermes-profile-export.md` for the checklist, `.gitignore`, rsync exclusions, identity/README notes, redaction snippet, secret scan, and verification commands.
 
 ## 1. Cloning Repositories
 

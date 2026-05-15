@@ -9,8 +9,9 @@ Use this when a user asks to push/export a Hermes profile such as `~/.hermes/pro
 3. Create a profile-aware `.gitignore` before copying files.
 4. Copy the profile with explicit exclusions for secrets, runtime state, logs, sessions, caches, locks, and local config.
 5. Commit a redacted `config.example.yaml` instead of the real `config.yaml`.
-6. Run a staged-file secret scan before committing.
-7. Push only after verifying the sensitive files are not tracked.
+6. If the exported profile is meant to be a domain-specific agent, update `SOUL.md` and `README.md` to state the agent identity/domain, and add a README "Skills" note distinguishing the profile's unique domain skill directory from bundled Hermes skills.
+7. Run a staged-file secret scan before committing.
+8. Push only after verifying the sensitive files are not tracked.
 
 ## Important `.gitignore` entries
 
@@ -97,6 +98,14 @@ rsync -a "$PROFILE"/ ./ \
   --exclude 'config.yaml' \
   --exclude 'config.yaml.bak*'
 ```
+
+## README and persona notes for domain-specific exports
+
+When the target repository represents a named/domain-specific Hermes profile, make the identity explicit in committed docs:
+
+- `SOUL.md`: define the agent name, domain, scope, operating style, and any non-legal/non-medical/etc. disclaimer relevant to the domain.
+- `README.md`: explain that this is a sanitized Hermes profile export, describe the domain purpose, and include a **Skills** section.
+- In the README **Skills** section, call out the one unique domain skill directory (for example `skills/RDTIIAnalyzer/`) and state that the rest of the checked-in skills are bundled Hermes skills included for general capability, not agent-specific domain logic.
 
 ## Redacted config example
 
