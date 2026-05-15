@@ -1,5 +1,5 @@
 # RDTII Framework Agent — Hermes Agent Profile for OpenClaw Agenthon 2026
-<img width="960" height="960" alt="image" src="https://github.com/user-attachments/assets/a841d63a-bab8-4284-9091-41d8e9506f3d" />
+<img width="120" height="120" alt="RDTII Framework Agent" src="https://github.com/user-attachments/assets/a841d63a-bab8-4284-9091-41d8e9506f3d" />
 
 **RDTII Framework Agent** is a domain-specific Hermes Agent for **RDTII** — the Regional Digital Trade Integration Index — packaged for **RISTEK x Build Club OpenClaw Agenthon Indonesia 2026**.
 
@@ -44,7 +44,7 @@ flowchart TB
         B[Discover Sources:\nlaws, regulations,\ntrade databases]
         C[Extract Regulatory\nMeasures with\nExact Citations]
         D[Map Measures to\nRDTII Pillars &\nIndicators]
-        E[Score Each Indicator\n0 (low) → 1 (high)]
+        E["Score Each Indicator\n0 (low) → 1 (high)"]
         F[Produce Audit Report\nwith Evidence Trail]
         A --> B --> C --> D --> E --> F
     end
