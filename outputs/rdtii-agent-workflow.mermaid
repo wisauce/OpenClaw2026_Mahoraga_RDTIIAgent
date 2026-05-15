@@ -82,8 +82,8 @@ flowchart TB
 
     subgraph Measure["PHASE 6: MEASURE EXTRACTION"]
         BE[Extract Discrete\nRegulatory Measure]
-        BE --> BF[Include:\n- Exact quoted text\n- Citation (art/sec/para/page)\n- Affected entities/sectors\n- Obligation/prohibition\n- Territorial scope\n- Effective status]
-        BF --> BG[Map Measure to\nRDTII Pillar(s) &\nIndicator(s)]
+        BE --> BF["Include:\n- Exact quoted text\n- Citation: art/sec/para/page\n- Affected entities/sectors\n- Obligation/prohibition\n- Territorial scope\n- Effective status"]
+        BF --> BG["Map Measure to\nRDTII Pillar(s) &\nIndicator(s)"]
         BG --> BH{One measure →\nmultiple indicators?}
         BH -->|Yes| BI[Create multiple\nmappings]
         BH -->|No| BJ[Create single mapping]
@@ -92,7 +92,7 @@ flowchart TB
     end
 
     subgraph Score["PHASE 7: SCORING"]
-        BL[AI Suggests Score\n(0 to 1)]
+        BL["AI Suggests Score\n(0 to 1)"]
         BM[AI Provides:\nRationale + Confidence +\nEvidence Citations]
         BL --> BM
         BM --> BN[Human Reviewer:\nAccepts / Adjusts /\nRejects]
