@@ -1,4 +1,4 @@
-# Agenthon Pitch Deck Template — Mahoraga / RDTII
+# Agenthon Pitch Deck Template — RDTII Agent / Team Mahoraga
 
 Use this reference when generating 5-slide pitch deck contents for OpenClaw Agenthon 2026 submissions. Each slide must map to the judging criteria: Use Case Clarity (10%), Creativity (30%), Autonomy & Agent Behaviour (30%), Technical Execution (20%), Deployability (10%).
 

@@ -1,8 +1,8 @@
-# New Zealand 2025 — Full RDTII Scorecard (Mahoraga Pipeline)
+# New Zealand 2025 — Full RDTII Scorecard (RDTII Agent Pipeline)
 
 **Economy:** New Zealand
 **Assessment year:** 2025
-**Pipeline run:** Autonomous Hermes Agent (Mahoraga) — 4 parallel research subagents + live source verification
+**Pipeline run:** Autonomous Hermes Agent (RDTII Agent, Team Mahoraga) — 4 parallel research subagents + live source verification
 **Overall score:** **0.18** (provisional)
 **Date:** 2026-05-15
 
@@ -70,4 +70,4 @@
 
 ---
 
-*Report generated 15 May 2026 by Mahoraga (Hermes Agent for RDTII). All scores provisional — require human reviewer confirmation.*
+*Report generated 15 May 2026 by RDTII Agent (Hermes Agent for RDTII; Team Mahoraga). All scores provisional — require human reviewer confirmation.*

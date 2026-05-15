@@ -352,4 +352,4 @@ Entities must state in their privacy policy: whether they are likely to disclose
 
 ---
 
-*This report was produced as an autonomous RDTII 2.1 policy-review pipeline demonstration using the RDTII Framework Agent (Hermes Agent). It requires expert human review before use as a formal score. Not legal advice.*
+*This report was produced as an autonomous RDTII 2.1 policy-review pipeline demonstration using RDTII Agent (Hermes Agent). It requires expert human review before use as a formal score. Not legal advice.*

@@ -1,7 +1,7 @@
-# Mahoraga — RDTII Framework Agent for OpenClaw Agenthon 2026
-<img width="120" height="120" alt="RDTII Framework Agent" src="https://github.com/user-attachments/assets/a841d63a-bab8-4284-9091-41d8e9506f3d" />
+# RDTII Agent — Mahoraga Team Submission for OpenClaw Agenthon 2026
+<img width="120" height="120" alt="RDTII Agent" src="https://github.com/user-attachments/assets/a841d63a-bab8-4284-9091-41d8e9506f3d" />
 
-**Mahoraga** is a domain-specific RDTII Framework Agent built on Hermes Agent for **RDTII** — the Regional Digital Trade Integration Index — packaged for **RISTEK x Build Club OpenClaw Agenthon Indonesia 2026**.
+**RDTII Agent** is a domain-specific Hermes Agent built by **Team Mahoraga** for **RDTII** — the Regional Digital Trade Integration Index — packaged for **RISTEK x Build Club OpenClaw Agenthon Indonesia 2026**.
 
 This agent is purpose-built for autonomous digital trade policy review. It uses Hermes Agent as its framework — with persona files, skills, memory, tool calls, web extraction, browser automation, code execution, and multi-agent task delegation — to complete end-to-end RDTII policy-review workflows without manual intervention.
 
@@ -18,7 +18,7 @@ Built on Hermes Agent, this system demonstrates genuine agent behavior beyond ch
 | **Reviewer-safe scoring** | Separates `ai_suggested_score`, `reviewer_score`, and `final_score` — the agent never finalizes a score without human confirmation. |
 | **Profile state** | Persona (`SOUL.md`), redacted config (`config.example.yaml`), memory, and skills are packaged as a reusable Hermes profile. |
 
-## Domain task Mahoraga completes
+## Domain task RDTII Agent completes
 
 Given a policy document, URL, or country name, the agent autonomously:
 
@@ -32,7 +32,7 @@ Given a policy document, URL, or country name, the agent autonomously:
 
 ## How the program flow works
 
-Mahoraga follows a structured loop that combines autonomous AI processing with human reviewer oversight. Here is the high-level flow:
+RDTII Agent follows a structured loop that combines autonomous AI processing with human reviewer oversight. Here is the high-level flow:
 
 ```mermaid
 flowchart TB
@@ -80,7 +80,7 @@ For full-pillar agentic parallel research, see `outputs/rdtii-parallel-research.
 
 ## Real knowledge graph implementation
 
-Mahoraga includes a lightweight SQLite implementation of the custom RDTII legal knowledge graph:
+RDTII Agent includes a lightweight SQLite implementation of the custom RDTII legal knowledge graph:
 
 - `scripts/rdtii_kg.py` — dependency-free SQLite schema + CLI.
 - `examples/rdtii_kg_fixture.json` — importable demo fixture.
@@ -188,7 +188,7 @@ Or use the prepared demo prompt in `examples/rdtii-demo-prompt.md`.
 
 ## Safety
 
-Mahoraga provides **policy research assistance, not legal advice**. All outputs require human expert review before operational use. The agent:
+RDTII Agent provides **policy research assistance, not legal advice**. All outputs require human expert review before operational use. The agent:
 
 - Cannot finalize RDTII scores without reviewer confirmation
 - Documents uncertainty, blocked databases, and missing evidence explicitly

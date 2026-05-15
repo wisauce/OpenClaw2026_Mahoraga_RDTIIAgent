@@ -1,4 +1,4 @@
-# Agenthon Compliance Checklist for RDTII Framework Agent
+# Agenthon Compliance Checklist for RDTII Agent
 
 This checklist translates the RISTEK x Build Club OpenClaw Agenthon 2026 technical guidelines into concrete profile requirements.
 

@@ -1,6 +1,6 @@
 # RDTII Legal Knowledge Graph
 
-Mahoraga includes a small **real database implementation** for custom RDTII legal knowledge graphs using SQLite. It is designed for hackathon demos and reviewer-safe local execution: no server, no network calls, no secrets, and no external dependencies.
+RDTII Agent includes a small **real database implementation** for custom RDTII legal knowledge graphs using SQLite. It is designed for hackathon demos and reviewer-safe local execution: no server, no network calls, no secrets, and no external dependencies.
 
 ## What it stores
 
@@ -86,4 +86,4 @@ SQLite gives the Agenthon demo a real DB without operational risk:
 
 ## Example claim for the pitch
 
-> Mahoraga creates a custom provision-level legal knowledge graph in SQLite: documents, provisions, measures, RDTII indicators, evidence records, source-query logs, and reviewer scores are persisted as typed nodes and edges, enabling auditable retrieval of scoring context while keeping final legal judgment with human reviewers.
+> RDTII Agent creates a custom provision-level legal knowledge graph in SQLite: documents, provisions, measures, RDTII indicators, evidence records, source-query logs, and reviewer scores are persisted as typed nodes and edges, enabling auditable retrieval of scoring context while keeping final legal judgment with human reviewers.

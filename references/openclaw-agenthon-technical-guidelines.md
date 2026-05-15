@@ -79,7 +79,7 @@ Optional additional track: **Best Payment Use Case**, for projects integrating p
 - Maintain professional communication and conduct.
 - Project ownership remains with participants, while organizers may display submissions/documentation/demos for event publication.
 
-## RDTII Framework Agent interpretation
+## RDTII Agent interpretation
 
 For this RDTII-focused Hermes Agent profile, emphasize:
 

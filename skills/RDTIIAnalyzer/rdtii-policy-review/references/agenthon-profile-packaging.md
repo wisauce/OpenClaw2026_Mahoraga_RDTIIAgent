@@ -49,7 +49,7 @@ The README should state clearly:
 
 ## Profile Rename Workflow
 
-When the user asks to rename a Hermes Agent profile (e.g., from a codename to a project name), there is a systematic set of files to update. The rename must be consistent across all layers of the profile. This pattern was learned from a full Mahoraga → RDTII Framework Agent rename across 15+ files.
+When the user asks to rename a Hermes Agent profile (e.g., from a codename to a project name), there is a systematic set of files to update. The rename must be consistent across all layers of the profile. This pattern was learned from full identity updates across 15+ files, including the clarification that **Mahoraga is the team name** while **RDTII Agent is the official agent name**.
 
 ### What to update — complete checklist
 

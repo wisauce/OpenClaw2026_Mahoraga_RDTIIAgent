@@ -1,9 +1,9 @@
-# OpenClaw2026_Mahoraga_Mahoraga — Pitch Deck Contents
+# OpenClaw2026_Mahoraga_RDTIIAgent — Pitch Deck Contents
 
 > **Format:** 5 slides, PDF
-> **Naming:** `OpenClaw2026_Mahoraga_Mahoraga.pdf`
+> **Naming:** `OpenClaw2026_Mahoraga_RDTIIAgent.pdf`
 > **Team:** Mahoraga
-> **Project:** Mahoraga — RDTII Domain-Specific Hermes Agent
+> **Project:** RDTII Agent — Domain-Specific Hermes Agent by Team Mahoraga
 
 ---
 
@@ -27,7 +27,7 @@ RDTII is the UN framework mapping 12 pillars of digital trade regulation from ta
 
 ## Slide 2 — Solution Overview
 
-**Title:** Mahoraga — Domain-Specific AI Agent for RDTII Policy Review
+**Title:** RDTII Agent — Domain-Specific AI Agent for RDTII Policy Review
 
 **Body:**
 
@@ -39,7 +39,7 @@ RDTII is the UN framework mapping 12 pillars of digital trade regulation from ta
 **Visual idea:** A pipeline diagram flowing left to right: Document → Extract Measures → Map to 12 Pillars → Suggest Scores → Audit Report. A "Reviewer Confirms" gate at the end.
 
 **Speaker notes:**
-Mahoraga isn't a chatbot that answers questions about trade policy. It's an autonomous AI agent that drives a reproducible, audit-ready review workflow. It separates AI suggestions from reviewer decisions — critical for legal compliance work. It queries required databases (WTO I-TIP, TAPED, Global Trade Alert, WIPO Lex, WITS) and documents access failures. Every output is structured for human expert finalisation.
+RDTII Agent isn't a chatbot that answers questions about trade policy. It's an autonomous AI agent that drives a reproducible, audit-ready review workflow. It separates AI suggestions from reviewer decisions — critical for legal compliance work. It queries required databases (WTO I-TIP, TAPED, Global Trade Alert, WIPO Lex, WITS) and documents access failures. Every output is structured for human expert finalisation.
 
 ---
 
@@ -106,7 +106,7 @@ The architecture uses Hermes Agent as the orchestrator. For a full economy revie
 **Visual idea:** Left side: feature checkboxes with check marks. Right side: a mini tech-stack logo row (Hermes + LLM icons).
 
 **Speaker notes:**
-What makes Mahoraga unique is the RDTII-specific design built on top of Hermes Agent's general capabilities. The data model separates framework definition from source documents from extracted measures from reviewer assessments — this mirrors how real legal review works. The provision dependency graph means we don't score Article 12 without also understanding the definition in Article 3 and the exception in Article 18. The multilingual pipeline handles everything from Thai to Arabic to Chinese. And because we separately track AI suggestions and reviewer scores, the system is legally defensible for UN ESCAP-grade reviews.
+What makes RDTII Agent unique is the RDTII-specific design built on top of Hermes Agent's general capabilities. The data model separates framework definition from source documents from extracted measures from reviewer assessments — this mirrors how real legal review works. The provision dependency graph means we don't score Article 12 without also understanding the definition in Article 3 and the exception in Article 18. The multilingual pipeline handles everything from Thai to Arabic to Chinese. And because we separately track AI suggestions and reviewer scores, the system is legally defensible for UN ESCAP-grade reviews.
 
 ---
 
@@ -127,8 +127,8 @@ What makes Mahoraga unique is the RDTII-specific design built on top of Hermes A
 - Multi-language reviewer interface for ASEAN+6 economies
 
 **Real-world impact:**
-- **Before Mahoraga:** Weeks per economy, inconsistent evidence, missed databases
-- **With Mahoraga:** Days per economy, auditable citation trails, verified primary sources, reviewer-ready outputs
+- **Before RDTII Agent:** Weeks per economy, inconsistent evidence, missed databases
+- **With RDTII Agent:** Days per economy, auditable citation trails, verified primary sources, reviewer-ready outputs
 
 **Agenthon alignment:**
 - ✅ Autonomous end-to-end loop
