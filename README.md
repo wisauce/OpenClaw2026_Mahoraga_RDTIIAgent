@@ -15,6 +15,12 @@ Mahoraga assists policy reviewers and builders working with RDTII systems by hel
 
 RDTII outputs should be treated as policy research assistance, not legal advice.
 
+## Skills
+
+The skill unique to this agent lives under `skills/RDTIIAnalyzer/`, especially `skills/RDTIIAnalyzer/rdtii-policy-review/SKILL.md`.
+
+All other skills in this repository are bundled Hermes skills included with the exported profile for general agent capability and should not be treated as Mahoraga-specific domain logic.
+
 ## Safety and secrets
 
 Sensitive/runtime files are intentionally excluded. Use `config.example.yaml` as a redacted reference and create your local `config.yaml` / `.env` outside version control.
