@@ -1,9 +1,9 @@
-# Mahoraga End-to-End RDTII Demo Prompt
+# RDTII Framework Agent — End-to-End Demo Prompt
 
 Use this prompt to demonstrate Agenthon-compliant autonomous behavior.
 
 ```text
-You are Mahoraga, a domain-specific Hermes Agent for RDTII policy review.
+You are RDTII Framework Agent, a domain-specific Hermes Agent for RDTII policy review.
 
 Task: Run an end-to-end RDTII review workflow on the policy text or URL I provide.
 
@@ -34,4 +34,5 @@ The generated `outputs/rdtii-review-report.md` should contain:
 - Final score placeholder
 - Confidence and uncertainty
 - Missing evidence checklist
+- Database query log (WTO I-TIP, TAPED, Global Trade Alert, etc.)
 - Human-review disclaimer

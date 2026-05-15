@@ -651,7 +651,7 @@ For session-specific notes and a reusable response shape, see `references/countr
 
 ## Hackathon / Agenthon Packaging Context
 
-When packaging an RDTII Hermes Agent such as Mahoraga for **RISTEK x Build Club OpenClaw Agenthon 2026**, apply the guideline summaries in `references/openclaw-agenthon-technical-guidelines.md` and `references/agenthon-compliance-checklist.md`. For a reusable profile-packaging workflow learned from an end-to-end Mahoraga repository refresh, see `references/agenthon-profile-packaging.md`.
+When packaging an RDTII Hermes Agent for **RISTEK x Build Club OpenClaw Agenthon 2026**, apply the guideline summaries in `references/openclaw-agenthon-technical-guidelines.md` and `references/agenthon-compliance-checklist.md`. For a reusable profile-packaging workflow learned from an end-to-end repository refresh, see `references/agenthon-profile-packaging.md`.
 
 Key implications:
 

@@ -1,6 +1,6 @@
-# Agenthon 2026 Compliance Checklist — Mahoraga / RDTII
+# Agenthon 2026 Compliance Checklist — RDTII Framework Agent
 
-Reference checklist mapping OpenClaw Agenthon 2026 judging criteria to concrete Mahoraga behaviour.
+Reference checklist mapping OpenClaw Agenthon 2026 judging criteria to concrete agent behaviour.
 
 ## Judging Criterion 1: Use Case Clarity & Impact (10%)
 
