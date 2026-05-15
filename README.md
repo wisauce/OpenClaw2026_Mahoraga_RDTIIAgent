@@ -78,6 +78,24 @@ The flow works in three stages:
 
 For full-pillar agentic parallel research, see `outputs/rdtii-parallel-research.mermaid`. For the detailed 8-phase technical pipeline, see `outputs/rdtii-agent-workflow.mermaid`.
 
+## Real knowledge graph implementation
+
+Mahoraga includes a lightweight SQLite implementation of the custom RDTII legal knowledge graph:
+
+- `scripts/rdtii_kg.py` — dependency-free SQLite schema + CLI.
+- `examples/rdtii_kg_fixture.json` — importable demo fixture.
+- `references/rdtii-legal-knowledge-graph.md` — usage and safety notes.
+
+Quick demo:
+
+```bash
+python3 scripts/rdtii_kg.py --db outputs/rdtii_kg_demo.sqlite init
+python3 scripts/rdtii_kg.py --db outputs/rdtii_kg_demo.sqlite load-sample
+python3 scripts/rdtii_kg.py --db outputs/rdtii_kg_demo.sqlite context --indicator P6_I1
+```
+
+The graph stores documents, provisions, regulatory measures, RDTII indicators, evidence records, source-query logs, and reviewer-score states as typed database records. It is local-only by default and does not require secrets.
+
 ## OpenClaw Agenthon alignment
 
 See `references/agenthon-compliance-checklist.md` for the full competition checklist.

@@ -1,0 +1,94 @@
+{
+  "nodes": [
+    {
+      "node_id": "IDN",
+      "node_type": "economy",
+      "label": "Indonesia",
+      "economy": "IDN",
+      "assessment_year": 2026,
+      "status": "demo"
+    },
+    {
+      "node_id": "P12",
+      "node_type": "rdtii_pillar",
+      "label": "P12 Online sales and transactions",
+      "status": "framework"
+    },
+    {
+      "node_id": "P12_I_ESIGNATURE",
+      "node_type": "rdtii_indicator",
+      "label": "P12 indicator — electronic signatures / transactions",
+      "status": "framework",
+      "metadata": {"pillar": "P12"}
+    },
+    {
+      "node_id": "doc_id_ite_law_demo",
+      "node_type": "document",
+      "label": "Electronic Information and Transactions Law — demo placeholder",
+      "economy": "IDN",
+      "assessment_year": 2026,
+      "source_type": "primary",
+      "status": "needs_reviewer_confirmation",
+      "metadata": {"note": "Demo fixture only; replace with live official source URL/citation before scoring."}
+    },
+    {
+      "node_id": "measure_id_e_signature_demo",
+      "node_type": "regulatory_measure",
+      "label": "Recognition of electronic signatures — demo placeholder",
+      "economy": "IDN",
+      "assessment_year": 2026,
+      "source_type": "primary",
+      "status": "needs_reviewer_confirmation",
+      "text": "Demo placeholder text. Do not use for final score without official citation."
+    }
+  ],
+  "edges": [
+    {
+      "edge_id": "edge_p12_contains_esig",
+      "source_node_id": "P12",
+      "target_node_id": "P12_I_ESIGNATURE",
+      "edge_type": "contains",
+      "confidence": "high"
+    },
+    {
+      "edge_id": "edge_id_doc_supports_measure_demo",
+      "source_node_id": "doc_id_ite_law_demo",
+      "target_node_id": "measure_id_e_signature_demo",
+      "edge_type": "supports_measure",
+      "confidence": "low",
+      "rationale": "Fixture demonstrates document-to-measure link; official source verification required."
+    },
+    {
+      "edge_id": "edge_id_measure_maps_p12_demo",
+      "source_node_id": "measure_id_e_signature_demo",
+      "target_node_id": "P12_I_ESIGNATURE",
+      "edge_type": "maps_to_indicator",
+      "confidence": "low",
+      "rationale": "Electronic-signature recognition may map to RDTII online transactions indicators."
+    }
+  ],
+  "source_queries": [
+    {
+      "query_id": "query_id_wipolex_ite_demo",
+      "economy": "IDN",
+      "assessment_year": 2026,
+      "source_name": "WIPO Lex",
+      "query": "Indonesia electronic information transactions law",
+      "url": "https://www.wipo.int/wipolex/",
+      "status": "demo_not_executed",
+      "result_summary": "Fixture entry; production reports must log actual database attempts."
+    }
+  ],
+  "indicator_scores": [
+    {
+      "score_id": "score_id_p12_esig_demo",
+      "indicator_node_id": "P12_I_ESIGNATURE",
+      "ai_suggested_score": null,
+      "reviewer_score": null,
+      "final_score": null,
+      "score_status": "missing",
+      "rationale": "Demo graph stores missing score state rather than defaulting to zero.",
+      "uncertainty": "high"
+    }
+  ]
+}
