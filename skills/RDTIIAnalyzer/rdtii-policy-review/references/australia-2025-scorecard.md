@@ -1,8 +1,8 @@
-# Australia 2025 — Full RDTII Scorecard (Pipeline Demo)
+# Australia 2025 — Full RDTII Scorecard (Mahoraga Pipeline Demo)
 
 **Economy:** Australia  
 **Assessment year:** 2025  
-**Pipeline run:** Autonomous Hermes Agent (RDTII Framework Agent)  
+**Pipeline run:** Autonomous Hermes Agent (Mahoraga)  
 **Overall score:** **0.23** (provisional)  
 **Date:** 2026-05-15
 

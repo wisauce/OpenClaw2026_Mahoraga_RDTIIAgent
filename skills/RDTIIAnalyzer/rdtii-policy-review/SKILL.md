@@ -1,7 +1,7 @@
 ---
 name: rdtii-policy-review
 description: Use when helping with RDTII 2.1 digital trade policy review systems, mapping legal/regulatory measures to RDTII pillars and indicators, scoring reviewer assessments, designing schemas, or auditing evidence for UN Regional Digital Trade Integration Index workflows.
-version: 1.2.0
+version: 1.3.0
 author: Hermes Agent
 license: MIT
 metadata:
@@ -651,7 +651,7 @@ For session-specific notes and a reusable response shape, see `references/countr
 
 ## Hackathon / Agenthon Packaging Context
 
-When packaging an RDTII Hermes Agent for **RISTEK x Build Club OpenClaw Agenthon 2026**, apply the guideline summaries in `references/openclaw-agenthon-technical-guidelines.md` and `references/agenthon-compliance-checklist.md`. For a reusable profile-packaging workflow learned from an end-to-end repository refresh, see `references/agenthon-profile-packaging.md`.
+When packaging an RDTII Hermes Agent for **RISTEK x Build Club OpenClaw Agenthon 2026**, apply the guideline summaries in `references/openclaw-agenthon-technical-guidelines.md` and `references/agenthon-compliance-checklist.md`. For packaging and profile-rename workflows, see `references/agenthon-profile-packaging.md`.
 
 Key implications:
 
@@ -660,6 +660,7 @@ Key implications:
 - Keep README instructions reproducible for judges.
 - Make clear that the unique domain skill lives under `skills/RDTIIAnalyzer/`; other skills are bundled Hermes skills.
 - For demos/decks, emphasize agent autonomy, RDTII evidence extraction/mapping/scoring workflow, and human-review safeguards.
+- When generating pitch deck contents (5 slides, PDF required), use `references/agenthon-pitch-deck-template.md` for the required slide structure, content shape per slide, visual ideas, speaker notes pattern, and common pitfalls.
 
 ## Economy Review Sequence
 
@@ -859,7 +860,17 @@ After all subagents return:
 - **Do not ask subagents to score.** Restrict them to evidence discovery only. Scoring should be done centrally after verification, to ensure consistent calibration across pillars.
 - **Do not attempt all 12 pillars in one subagent.** Each subagent should own 2–4 related pillars max to keep its context focused.
 
-For a worked example of this pattern in action, see `references/japan-2025-evidence-report.md`. For a complete scored output with verified primary sources, see `references/australia-2025-scorecard.md`.
+For a worked example of this pattern in action, see `references/japan-2025-evidence-report.md`. For a complete scored output with verified primary sources, see `references/australia-2025-scorecard.md` and `references/nz-2025-scorecard.md`.
+
+## Templates and Diagrams
+
+For RDTII workflow diagrams suitable for pitch decks and GitHub rendering, use the Mermaid diagrams at `outputs/` in the repository:
+
+- `outputs/rdtii-agent-workflow.mermaid` — Full 8-phase end-to-end pipeline (initialization → source discovery → document processing → provision graph → evidence retrieval → measure extraction → scoring → report)
+- `outputs/rdtii-parallel-research.mermaid` — Multi-agent parallel research pattern with 4 thematic subagent clusters
+- `outputs/rdtii-autonomous-loop.mermaid` — Autonomous agent loop with reviewer gate hand-off
+
+When generating or editing Mermaid diagrams, see `references/mermaid-syntax-pitfalls.md` for known parsing issues (parentheses in node labels, arrow characters in edge labels).
 
 ## Scoring Rule Types to Support
 
@@ -934,6 +945,8 @@ Avoid unsupported legal conclusions. If primary legal text is unavailable, say s
 14. **Producing a report without attempting required database queries.** The user will call this out. Before compiling any report, attempt every named database (WTO I-TIP, TAPED, Global Trade Alert, V-Dem, WIPO Lex, WITS) via browser or curl. If blocked, document the failure explicitly in the evidence log. A report that says "missing evidence" without showing any attempt to query the named source is incomplete.
 
 15. **Not verifying subagent findings against live sources.** Subagent summaries are self-reports — they may claim "verified from official PDF" using training knowledge rather than a live fetch. Always spot-check at least 2–3 critical provisions per economy by downloading and reading the actual PDF from the official government/regulator website.
+
+    **Concrete example (NZ session, 2026-05-15):** A P12 subagent cited the Electronic Transactions Act 2002 as "live primary legislation — verified from legislation.govt.nz." Live browser verification showed the Act was actually **Repealed** (since 1 Sep 2017, replaced by Contract and Commercial Law Act 2017 Part 3). The subagent's training knowledge was stale by ~9 years. Always check the in-force/repealed status banner at the top of legislation.govt.nz pages. This applies doubly for older statutes (pre-2010) that may have been consolidated into revision acts.
 
 ## Verification Checklist
 

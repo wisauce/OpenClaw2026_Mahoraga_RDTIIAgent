@@ -1,8 +1,8 @@
-# OpenClaw Agenthon 2026 guidelines for RDTII Framework Agent packaging
+# OpenClaw Agenthon 2026 guidelines for RDTII/Mahoraga packaging
 
 Source used in session: `http://ristek.link/Technical-Guidelines` (Google Docs export for RISTEK x Build Club OpenClaw Agenthon 2026).
 
-Use this reference when packaging, documenting, demoing, or submission-checking an RDTII Hermes Agent for the hackathon.
+Use this reference when packaging, documenting, demoing, or submission-checking an RDTII Hermes Agent such as Mahoraga for the hackathon.
 
 ## Competition shape
 
@@ -69,7 +69,7 @@ Pitch deck:
 
 Optional track: Best Payment Use Case, only if the project integrates payments or financial transactions.
 
-## RDTII Framework Agent positioning checklist
+## Mahoraga/RDTII positioning checklist
 
 For an RDTII-focused Hermes profile, emphasize:
 
@@ -77,5 +77,5 @@ For an RDTII-focused Hermes profile, emphasize:
 - Tool calls for document ingestion, evidence extraction, indicator mapping, scoring, and report generation.
 - Clear architecture: Hermes Agent + `RDTIIAnalyzer/rdtii-policy-review` skill + reviewer-facing outputs.
 - Human reviewer confirmation for legal/policy scoring, while still showing agent autonomy in suggestion/extraction/report workflows.
-- A README that states the unique skill is under `skills/RDTIIAnalyzer/`; other skills are bundled Hermes skills.
+- A README that states the unique Mahoraga skill is under `skills/RDTIIAnalyzer/`; other skills are bundled Hermes skills.
 - A short demo that proves autonomous workflow execution, not just conversation.

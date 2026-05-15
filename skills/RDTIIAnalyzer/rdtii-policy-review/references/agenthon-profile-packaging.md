@@ -1,10 +1,10 @@
-# Agenthon Profile Packaging Notes for RDTII Framework Agent
+# Agenthon Profile Packaging Notes
 
-Use these notes when packaging or refreshing the RDTII Framework Hermes profile for RISTEK x Build Club OpenClaw Agenthon submissions.
+Use these notes when packaging or refreshing an RDTII Hermes profile for RISTEK x Build Club OpenClaw Agenthon submissions.
 
 ## Durable workflow learned
 
-When the user asks to make the RDTII Framework profile compliant with OpenClaw Agenthon requirements, treat the profile directory itself as the agent artifact, not merely documentation.
+When the user asks to make the RDTII profile compliant with OpenClaw Agenthon requirements, treat the profile directory itself as the agent artifact, not merely documentation.
 
 Recommended flow:
 
@@ -26,7 +26,7 @@ Recommended flow:
    - generate or maintain a redacted `config.example.yaml` instead;
    - preserve `security.redact_secrets: true` in local profile config when present.
 5. Add or refresh judge-facing artifacts:
-   - profile `README.md` explaining RDTII Framework Agent as a domain-specific Hermes Agent for RDTII;
+   - profile `README.md` explaining the agent as a domain-specific Hermes Agent for RDTII;
    - `references/agenthon-compliance-checklist.md` mapping Agenthon requirements to concrete behavior;
    - `references/openclaw-agenthon-technical-guidelines.md` or equivalent guideline summary;
    - `examples/rdtii-demo-prompt.md` showing an end-to-end RDTII workflow.
@@ -41,11 +41,44 @@ Recommended flow:
 
 The README should state clearly:
 
-- RDTII Framework Agent is a domain-specific Hermes Agent for the Regional Digital Trade Integration Index (RDTII).
+- The agent is a domain-specific Hermes Agent for the Regional Digital Trade Integration Index (RDTII).
 - The unique domain skill is under `skills/RDTIIAnalyzer/`.
 - Other skills are bundled Hermes skills, not the submission's unique RDTII contribution.
 - RDTII outputs are policy research assistance requiring expert review, not legal advice.
 - The demo should show tool use and artifact generation, not only chat responses.
+
+## Profile Rename Workflow
+
+When the user asks to rename a Hermes Agent profile (e.g., from a codename to a project name), there is a systematic set of files to update. The rename must be consistent across all layers of the profile. This pattern was learned from a full Mahoraga → RDTII Framework Agent rename across 15+ files.
+
+### What to update — complete checklist
+
+1. **SOUL.md** — agent persona identity (`You are <Name>, a domain-specific Hermes Agent for RDTII.`)
+2. **README.md** — full rewrite: project name, positioning, judging criteria table, architecture description
+3. **memories/USER.md** — profile reference in user preferences
+4. **memories/MEMORY.md** — any memory entries that reference the old name
+5. **references/*.md** — all reference files in the profile root (agenthon-compliance-checklist, openclaw-agenthon-technical-guidelines, etc.)
+6. **skills/<Category>/<Skill>/SKILL.md** — the main skill's "Hackathon / Agenthon Packaging Context" section
+7. **skills/<Category>/<Skill>/references/*.md** — all skill reference files (agenthon-profile-packaging, agenthon-compliance-checklist, openclaw-agenthon-guidelines, australia-2025-scorecard, etc.)
+8. **examples/*.md** — demo prompts that reference the agent by name
+9. **outputs/*.md** — any sample reports with agent-name attribution in disclaimers
+
+### Execution pattern
+
+```txt
+1. Search for the old name across the entire repo: `git grep -i <oldname>`
+2. For each match, classify: rename-safe (branding) vs. reference (repo URL stays)
+3. Work the list above top-to-bottom to avoid missed files
+4. After patching, re-search to confirm zero remaining references (except repo URL)
+5. Add -A, commit with comprehensive message listing every file touched
+```
+
+### Pitfalls when renaming
+
+- **Repo URL names**: the GitHub repository name (e.g., `OpenClaw-Agenthon_Mahoraga`) cannot be changed without GitHub API/admin access. It is OK to leave the URL in the README as-is — judges do not penalize repo name mismatch with project name.
+- **Cross-file consistency**: a rename that misses even one reference file creates confusion. Always do a full grep sweep after the last patch.
+- **Skill SKILL.md is version-controlled separately from the profile repo**: the live profile at `~/.hermes/profiles/<name>/` and the GitHub repo copy are independent. Rename both, or users pulling the repo for the first time will get the old name in the skill.
+- **memories/MEMORY.md is ephemeral**: update it in the live profile when renaming, but do NOT commit it to the repo — it's a runtime file excluded by `.gitignore`.
 
 ## Pitfalls
 

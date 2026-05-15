@@ -1,7 +1,7 @@
 # RDTII Database and Source Accessibility Log
 
 Last updated: 2026-05-15
-Session: Australia 2025 full-scoring pipeline
+Session: New Zealand 2025 full-scoring pipeline
 
 ## Accessible without residential proxies
 
@@ -13,6 +13,9 @@ Session: Australia 2025 full-scoring pipeline
 | Australia OAIC — APPs full text | https://www.oaic.gov.au/privacy/australian-privacy-principles/read-the-australian-privacy-principles | Browser | Works | Full legal text of all 13 Australian Privacy Principles (Schedule 1, Privacy Act 1988). No bot blocking. Best single source for Australia's data protection framework. See also quick-reference at /privacy/australian-privacy-principles/australian-privacy-principles-quick-reference |
 | Japan Law Translation | https://www.japaneselawtranslation.go.jp/ | Browser | Works, with 403 on specific paths | Landing page works; some individual law pages return 403. Try alternative paths. |
 | WIPO Lex | https://wipolex.wipo.int/ | Browser | Works (previously) | Last verified earlier session; should work for IP law lookups. |
+| **New Zealand legislation.govt.nz** | https://www.legislation.govt.nz/ | Browser | **Works** | Confirmed live NZ 2025 session. 5+ laws verified in browser (Privacy Act 2020, Copyright Act 1994, HDCA 2015, Contract and Commercial Law Act 2017, Electronic Transactions Act 2002). No bot blocking. Acts in HTML with clear "In force / Repealed" status banners at top. SPA-style navigation with collapsible section table of contents. URL pattern: `/act/public/YEAR/NUMBER/latest/`.
+
+⚠️ **Watch for: the "In force" / "Repealed" status banner** is shown at the top of each act page. A subagent in the NZ session cited the ETA 2002 as in force — it was actually marked **Repealed** in the banner. Always check this banner before scoring. |
 
 ## Blocked (requires residential proxy)
 
@@ -47,5 +50,5 @@ When demonstrating the pipeline or when a user wants an end-to-end example with 
 
 1. **Australia** — legislation.gov.au + OAIC website, no bot blocking, English, well-structured acts. Best overall choice for full pipeline demo.
 2. **Japan** — PPC PDF available for APPI; other laws via Japanese Law Translation (sometimes blocked). Good for Pillar 6/7 demo.
-3. **New Zealand** — legislation.govt.nz, no bot blocking (not verified in this session but historically accessible)
+3. **New Zealand** — legislation.govt.nz, no bot blocking (✅ **verified NZ 2025 session** — 5+ laws confirmed live, SPA interface works with browser, in-force/repealed status banner visible at page top)
 4. **United Kingdom** — legislation.gov.uk, no bot blocking (not verified in this session but historically accessible)
