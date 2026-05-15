@@ -15,6 +15,21 @@ Mahoraga assists policy reviewers and builders working with RDTII systems by hel
 
 RDTII outputs should be treated as policy research assistance, not legal advice.
 
+## OpenClaw Agenthon context
+
+Mahoraga is packaged for **RISTEK x Build Club OpenClaw Agenthon 2026**. The profile understands the official technical guidelines from `http://ristek.link/Technical-Guidelines` and keeps them in mind for packaging, documentation, demo, and submission work.
+
+Key guideline implications:
+
+- This must be an AI Agent or Multi-Agent System, not a basic chatbot wrapper.
+- The system should demonstrate reasoning, decision-making, tool usage, workflow execution, and an autonomous loop.
+- At least one task should be completed end-to-end without manual human intervention.
+- The README should stay reproducible for judges.
+- The demo should clearly show product workflow and agent behavior within 2 minutes.
+- The pitch deck should cover problem, solution, agent workflow/architecture, key features/tech stack, and future development/impact.
+
+A concise guideline summary is stored in `references/openclaw-agenthon-technical-guidelines.md`.
+
 ## Skills
 
 The skill unique to this agent lives under `skills/RDTIIAnalyzer/`, especially `skills/RDTIIAnalyzer/rdtii-policy-review/SKILL.md`.
