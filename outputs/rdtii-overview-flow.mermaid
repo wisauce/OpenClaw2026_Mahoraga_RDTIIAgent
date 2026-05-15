@@ -1,0 +1,31 @@
+flowchart TB
+    User(["Policy Reviewer"]) -->|"submits country name\nor policy document"| Agent
+
+    subgraph Agent["RDTII FRAMEWORK AGENT"]
+        direction TB
+        A[Load RDTII 2.1\nMethodology & 12 Pillars]
+        B[Discover Sources:\nlaws, regulations,\ntrade databases]
+        C[Extract Regulatory\nMeasures with\nExact Citations]
+        D[Map Measures to\nRDTII Pillars &\nIndicators]
+        E[Score Each Indicator\n0 (low) → 1 (high)]
+        F[Produce Audit Report\nwith Evidence Trail]
+        A --> B --> C --> D --> E --> F
+    end
+
+    subgraph Review["HUMAN REVIEW"]
+        G{Reviewer Gates\nEach Mapping & Score}
+        G -->|Accept| H[Finalize Score]
+        G -->|Adjust| I[Set Corrected Score]
+        G -->|Reject| J[Flag Missing\nEvidence]
+        H --> K[Calculate Weighted\nPillar Scores]
+        I --> K
+        J --> B
+    end
+
+    F -.-> G
+    K --> L[("Final RDTII Score\n0.0 – 1.0")]
+
+    style Agent fill:#e3f2fd,stroke:#1565c0,color:#000
+    style Review fill:#e8f5e9,stroke:#2e7d32,color:#000
+    style User fill:#f3e5f5,stroke:#6a1b9a,color:#000
+    style L fill:#fff9c4,stroke:#f57f17,color:#000
