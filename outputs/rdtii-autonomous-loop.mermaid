@@ -1,0 +1,38 @@
+flowchart TB
+    subgraph Loop["AUTONOMOUS AGENT LOOP"]
+        direction TB
+        A[User submits:\npolicy URL, document,\nor country name] --> B[Load rdtii-policy-\nreview skill]
+        B --> C{Next Action?}
+        
+        C -->|Discover sources| D[Fetch primary &\nsecondary sources\nvia browser / curl / API]
+        D --> E[Extract text,\nchunk by legal hierarchy,\npreserve citations]
+        E --> F[Identify regulatory\nmeasures]
+        F --> G[Map measures to\nRDTII pillars &\nindicators]
+        G --> H[Query required\ndatabases:\nWTO I-TIP, TAPED,\nGTA, V-Dem, WITS]
+        H --> I{Blocked?}
+        I -->|Yes| J[Document error type\n& fallback attempted]
+        I -->|No| K[Log query results]
+        J --> L[Mark pending_\nmanual_query]
+        K --> L
+        L --> M[Suggest AI scores\n+ rationale +\nevidence citations]
+        M --> N[Write audit report:\noutputs/rdtii-\nreview-report.md]
+        N --> O[Verify report has:\nmeasures, mappings, scores,\ncitations, uncertainty,\nhuman-review disclaimer]
+        O --> P{Complete?}
+        P -->|No → revise| C
+        P -->|Yes → deliver| Q[Return report\nto user]
+    end
+
+    subgraph Gate["HUMAN REVIEWER GATE"]
+        R[Reviewer receives\nreport + AI scores]
+        S[Reviewer accepts /\nrejects / adjusts\neach mapping & score]
+        T[System stores:\nai_suggested_score\nreviewer_score\nfinal_score]
+        U[System recalculates\npillar & overall scores\nwith confirmed data]
+        R --> S --> T --> U
+    end
+
+    Q -.->|Hand-off| R
+
+    style Loop fill:#e3f2fd,stroke:#1565c0,color:#000
+    style Gate fill:#e8f5e9,stroke:#2e7d32,color:#000
+    style I fill:#ffccbc,stroke:#bf360c,color:#000
+    style P fill:#fff9c4,stroke:#f57f17,color:#000

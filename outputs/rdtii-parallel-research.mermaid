@@ -1,0 +1,63 @@
+flowchart LR
+    subgraph Orchestrator["ORCHESTRATOR AGENT"]
+        A[("Economy +\nAssessment Year")] --> B[Split 12 Pillars\ninto 4 Clusters]
+    end
+
+    subgraph S1["SUBAGENT 1: Data & Cross-Border"]
+        direction TB
+        C[P6: Cross-border data policies\nP7: Domestic data protection]
+        C --> C1[Fetch laws:\ndata protection, cybersecurity,\ncross-border transfer rules]
+        C1 --> C2[Return:\narticle numbers, citations,\nsource URLs, verification_status]
+    end
+
+    subgraph S2["SUBAGENT 2: Telecom & Platforms"]
+        direction TB
+        D[P5: Telecom regulations\nP8: Intermediary liability\nP9: Content access]
+        D --> D1[Fetch laws:\ntelecom licences, safe harbour,\ncontent blocking rules]
+        D1 --> D2[Return:\narticle numbers, citations,\nsource URLs, verification_status]
+    end
+
+    subgraph S3["SUBAGENT 3: Trade & Investment"]
+        direction TB
+        E[P1: Tariffs\nP2: Public procurement\nP3: Foreign investment\nP10: Non-technical NTMs]
+        E --> E1[Query databases:\nWTO I-TIP, GTA, WITS,\nofficial tariff schedules]
+        E1 --> E2[Return:\nmeasure details, source URLs,\nverification_status]
+    end
+
+    subgraph S4["SUBAGENT 4: Digital Economy & IP"]
+        direction TB
+        F[P4: Intellectual property\nP11: Standards & procedures\nP12: Online sales & transactions]
+        F --> F1[Fetch laws:\nIP statutes, e-commerce law,\ne-signature regulations]
+        F1 --> F2[Return:\narticle numbers, citations,\nsource URLs, verification_status]
+    end
+
+    subgraph Merge["MERGE & VERIFY (Orchestrator)"]
+        G[Merge Research from\nAll 4 Subagents]
+        H[Spot-Check Critical\nProvisions Live:\ndownload actual PDF,\nextract text, verify citations]
+        I{Primary Evidence\nVerified?}
+        J[Score Only Indicators\nwith Verified Primary Evidence]
+        K[Mark Others as:\nprovisional / missing]
+        L[Label Report:\nVerified or Provisional]
+        M[Compile Indicator\nEvidence Records with\nexplicit score_status]
+        G --> H --> I
+        I -->|Yes| J --> L
+        I -->|No| K --> L
+        L --> M
+    end
+
+    B -.->|delegate_task\nparallel| S1
+    B -.->|delegate_task\nparallel| S2
+    B -.->|delegate_task\nparallel| S3
+    B -.->|delegate_task\nparallel| S4
+    S1 -.->|returns| G
+    S2 -.->|returns| G
+    S3 -.->|returns| G
+    S4 -.->|returns| G
+
+    style Orchestrator fill:#e3f2fd,stroke:#1565c0,color:#000
+    style S1 fill:#fce4ec,stroke:#c62828,color:#000
+    style S2 fill:#f3e5f5,stroke:#6a1b9a,color:#000
+    style S3 fill:#e8f5e9,stroke:#2e7d32,color:#000
+    style S4 fill:#fff3e0,stroke:#e65100,color:#000
+    style Merge fill:#fff9c4,stroke:#f57f17,color:#000
+    style I fill:#ffccbc,stroke:#bf360c,color:#000

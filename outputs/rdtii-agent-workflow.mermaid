@@ -1,0 +1,130 @@
+flowchart TB
+    subgraph Init["PHASE 1: INITIALIZATION"]
+        A[("Economy +\nAssessment Year")] --> B[Load RDTII 2.1\nFramework & Rubric]
+        B --> C[Build Complete\n12-Pillar Indicator\nChecklist]
+        C --> D[Identify Required\nSources per Indicator:\nWTO I-TIP, TAPED, GTA,\nV-Dem, WIPO Lex, WITS]
+    end
+
+    subgraph Disc["PHASE 2: SOURCE DISCOVERY"]
+        E{Source Type?}
+        E -->|Primary| F[Official Gazettes /\nLaws & Regulations /\nMinistry Websites]
+        E -->|Secondary| G[WTO I-TIP /\nGlobal Trade Alert /\nTAPED / V-Dem /\nWIPO Lex / WITS]
+        G --> H{Accessible?}
+        H -->|Yes| I[Query & Fetch Records]
+        H -->|Blocked| J[Fallback:\ncurl → Wayback Machine\n→ Official API]
+        J --> K[Document Error Type\n& Alternative Attempted]
+        K --> L[Mark\npending_manual_query]
+        I --> M[Log Query: URL,\nDate, Result Summary]
+        F --> M
+    end
+
+    subgraph Proc["PHASE 3: DOCUMENT PROCESSING"]
+        N[Save Original File:\nPDF / HTML / CSV / JSON]
+        O[Store Metadata:\nURL, Timestamp, HTTP Status,\nChecksum, Reference ID]
+        N --> O
+        O --> P{Format?}
+        P -->|Digital PDF| Q[Extract Embedded Text]
+        P -->|Scanned| R[OCR with Script-\nAware Engine]
+        P -->|HTML| S[Extract: Headings,\nTables, Footnotes]
+        P -->|DOCX/XLSX| T[Parse Tables]
+        Q --> U[Preserve: Page No,\nArticle/Section,\nHeading Hierarchy]
+        R --> U
+        S --> U
+        T --> U
+        U --> V{Language = English?}
+        V -->|Yes| W[Use as-is]
+        V -->|No| X[Store Original Script +\nBCP-47 Tag]
+        X --> Y[Translate + Flag\nneeds_human_review]
+        Y --> W
+        W --> Z[Chunk by Legal Hierarchy:\nPart → Chapter → Article\n→ Paragraph → Sub-clause]
+        Z --> AA[Assign chunk_id:\ndoc_014_art20_para2]
+        AA --> AB[Classify Document Type]
+        AB -->|base_law| AC[Register in\nLaw Registry]
+        AB -->|amendment| AD[Hold if base\nmissing → priority queue]
+        AB -->|consolidation| AE[Compare amendment\nchain]
+        AB -->|repeal| AF[Mark repealed;\nkeep for audit]
+        AC --> AG[Extract: modified /\ninserted / deleted]
+        AD --> AG
+        AE --> AG
+        AF --> AG
+        AG --> AH[Merge at Provision Level:\nsupersede old, create active]
+        AH --> AI[Rebuild Consolidated\nView for Assessment Year]
+        AI --> AJ[Flag Impacted\nIndicators for Re-scoring]
+    end
+
+    subgraph Graph["PHASE 4: PROVISION GRAPH"]
+        AK[Build Dependency\nGraph per Jurisdiction]
+        AK --> AL{Edge Extraction}
+        AL -->|Regex| AM[Article Refs /\nLaw Numbers /\nDefined Terms]
+        AL -->|LLM| AN[Implicit Exceptions /\nEnforcement Dependencies]
+        AM --> AO[Semantic Validation:\nmultilingual embeddings]
+        AN --> AO
+        AO --> AP{Similarity?}
+        AP -->|> 0.92| AQ[Confirmed Edge ✓]
+        AP -->|0.75–0.92| AR[Low Confidence →\nHuman Review]
+        AP -->|< 0.75| AS[Reject]
+        AQ --> AT[Reverse Traverse for\nAmendment Impact Set]
+        AT --> AU[Flag impact set\nfor Re-scoring]
+    end
+
+    subgraph Retrieval["PHASE 5: EVIDENCE RETRIEVAL"]
+        AV[For Each Indicator]
+        AV --> AW{Retrieval Method}
+        AW -->|Tag-based| AX[Query provisions by\nRDTII topic tags:\ndata_localization,\ncross_border_transfer,\nintermediary_liability]
+        AW -->|Semantic| AY[Embed indicator rubric\n→ search provision\nembeddings]
+        AX --> AZ[Union + Deduplicate]
+        AY --> AZ
+        AZ --> BA[Expand through\nDependency Graph]
+        BA --> BB[Prioritize by Legal Role:\n1. Definitions\n2. Candidate provisions\n3. Exceptions\n4. Implementing regs\n5. Penalties\n6. Database records]
+        BB --> BC[Assemble Scoring Context\nwith Token Budget]
+        BC --> BD[Log: provision IDs,\nedge IDs, database records,\nrationale, ambiguity flags]
+    end
+
+    subgraph Measure["PHASE 6: MEASURE EXTRACTION"]
+        BE[Extract Discrete\nRegulatory Measure]
+        BE --> BF[Include:\n- Exact quoted text\n- Citation (art/sec/para/page)\n- Affected entities/sectors\n- Obligation/prohibition\n- Territorial scope\n- Effective status]
+        BF --> BG[Map Measure to\nRDTII Pillar(s) &\nIndicator(s)]
+        BG --> BH{One measure →\nmultiple indicators?}
+        BH -->|Yes| BI[Create multiple\nmappings]
+        BH -->|No| BJ[Create single mapping]
+        BI --> BK[Set mapping_status:\nsuggested / accepted /\nrejected / needs_evidence]
+        BJ --> BK
+    end
+
+    subgraph Score["PHASE 7: SCORING"]
+        BL[AI Suggests Score\n(0 to 1)]
+        BM[AI Provides:\nRationale + Confidence +\nEvidence Citations]
+        BL --> BM
+        BM --> BN[Human Reviewer:\nAccepts / Adjusts /\nRejects]
+        BN --> BO{Reviewer Decision}
+        BO -->|Accept| BP[reviewer_score =\nai_suggested_score]
+        BO -->|Adjust| BQ[Reviewer sets\nown score]
+        BO -->|Reject| BR[Mark needs_more_\nevidence + explain why]
+        BP --> BS[final_score =\nreviewer_score]
+        BQ --> BS
+        BR --> BL
+        BS --> BT[score_status:\nreviewer_confirmed]
+        BT --> BU[Store Assessment:\nai_suggested_score /\nreviewer_score /\nfinal_score all separate]
+    end
+
+    subgraph Report["PHASE 8: REPORT & SCORECARD"]
+        BV[Collect All Indicator\nAssessments for Economy]
+        BV --> BW[Per Pillar:\nWeighted Average of\nIndicator Scores]
+        BW --> BX[Overall RDTII Score:\nSimple Average of\n12 Pillar Scores]
+        BX --> BY[Calculate Coverage:\nscored / missing /\nneeds_review indicators]
+        BY --> BZ{Primary Evidence\nfor all indicators?}
+        BZ -->|Yes| CA[Label: Verified]
+        BZ -->|No| CB[Label: Provisional]
+        CA --> CC[Generate Audit Report:\n- Evidence table\n- Source-query log\n- Blocked DB attempts\n- Missing evidence checklist\n- Human-review disclaimer]
+        CB --> CC
+    end
+
+    Init --> Disc --> Proc --> Graph --> Retrieval --> Measure --> Score --> Report
+
+    style A fill:#e1f5fe,stroke:#01579b
+    style C fill:#fff9c4,stroke:#f57f17
+    style H fill:#ffccbc,stroke:#bf360c
+    style J fill:#ffccbc,stroke:#bf360c
+    style AP fill:#fff9c4,stroke:#f57f17
+    style BN fill:#e8f5e9,stroke:#2e7d32
+    style BZ fill:#fff9c4,stroke:#f57f17
