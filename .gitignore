@@ -42,6 +42,10 @@ gateway_state.json
 channel_directory.json
 cron/.tick.lock
 
+# Local config: publish a redacted example instead
+config.yaml
+config.yaml.bak*
+
 # Local machine/editor noise
 .DS_Store
 Thumbs.db

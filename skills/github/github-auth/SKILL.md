@@ -178,6 +178,27 @@ echo "<THEIR_TOKEN>" | gh auth login --with-token
 gh auth setup-git
 ```
 
+### One-off token use without storing credentials
+
+When a user supplies a GitHub PAT for a single clone/push and you do not need to persist login state, prefer a temporary `GIT_ASKPASS` helper over embedding the token in a remote URL or writing `~/.git-credentials`. Delete the helper after the operation, and remind the user to rotate any token pasted into chat.
+
+```bash
+ASKPASS=$(mktemp)
+cat > "$ASKPASS" <<'EOF'
+#!/usr/bin/env bash
+case "$1" in
+  *Username*) printf '%s\n' 'x-access-token' ;;
+  *Password*) printf '%s\n' "$GITHUB_TOKEN" ;;
+  *) printf '\n' ;;
+esac
+EOF
+chmod 700 "$ASKPASS"
+export GIT_ASKPASS="$ASKPASS" GIT_TERMINAL_PROMPT=0
+# export GITHUB_TOKEN='<token from user>' in the narrowest scope possible
+# git clone/push/fetch ...
+rm -f "$ASKPASS"
+```
+
 ### Verify
 
 ```bash
